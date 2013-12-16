@@ -1,0 +1,31 @@
+{
+  "name": "webdriver-http-sync",
+  "version": "0.5.0",
+  "description": "Sync HTTP implementation of the WebDriver protocol",
+  "publishConfig": {
+    "license": {
+      "exclude": [
+        "test"
+      ]
+    }
+  },
+  "author": {
+    "name": "Sean Massa",
+    "email": "smassa@groupon.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/groupon/webdriver-http-sync"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "http-sync": "0.0.4",
+    "assertive": "~1.2.0",
+    "underscore": "~1.5.2"
+  },
+  "devDependencies": {
+    "coffee-script-redux": "2.0.0-beta6",
+    "semver": "~1.1.4",
+    "npub": "0.0.5"
+  }
+}
