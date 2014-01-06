@@ -17,7 +17,7 @@ npm install sync-node-webdriver
 
 ### WebDriver
 
-`driver = new WebDriver`
+`driver = new WebDriver(serverUrl, desiredCapabilities, httpOptions)`
 
 Method | Description
 :----- | :----------

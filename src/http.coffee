@@ -37,15 +37,14 @@ parseUrl = require('url').parse
 json = require './json'
 {EventEmitter} = require 'events'
 
-ROOT_URL = 'http://localhost:4444/wd/hub'
 TIMEOUT = 60000
 CONNECT_TIMEOUT = 2000
 
-normalizeUrl = (sessionRoot, url) ->
+normalizeUrl = (serverUrl, sessionRoot, url) ->
   if url.indexOf('http') == 0
     url
   else
-    ROOT_URL + sessionRoot + url
+    serverUrl + sessionRoot + url
 
 emitter = new EventEmitter
 log = (message) ->
@@ -91,7 +90,7 @@ createSession = (http, desiredCapabilities) ->
   assert.truthy sessionId
   sessionId
 
-module.exports = ({timeout, connectTimeout}, desiredCapabilities) ->
+module.exports = (serverUrl, desiredCapabilities, {timeout, connectTimeout})   ->
   timeout ?= TIMEOUT
   connectTimeout ?= CONNECT_TIMEOUT
   sessionRoot = '' # populated below!
@@ -113,14 +112,14 @@ module.exports = ({timeout, connectTimeout}, desiredCapabilities) ->
     makeRequest(httpSyncRequest, data)
 
   get = (url) ->
-    url = normalizeUrl(sessionRoot, url)
+    url = normalizeUrl(serverUrl, sessionRoot, url)
     log "[WEB] GET #{url}"
     response = request(url)
     verbose response
     response
 
   post = (url, data={}) ->
-    url = normalizeUrl(sessionRoot, url)
+    url = normalizeUrl(serverUrl, sessionRoot, url)
     method = 'POST'
     log "[WEB] POST #{url}"
     data = JSON.stringify(data)
@@ -129,7 +128,7 @@ module.exports = ({timeout, connectTimeout}, desiredCapabilities) ->
     response
 
   del = (url) ->
-    url = normalizeUrl(sessionRoot, url)
+    url = normalizeUrl(serverUrl, sessionRoot, url)
     method = 'DELETE'
     log "[WEB] DELETE #{url}"
     response = request(url, method)
