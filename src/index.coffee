@@ -43,10 +43,11 @@ createNavigationApi = require './navigation_api'
 createPageApi = require './page_api'
 
 module.exports = class WebDriver
-  constructor: (desiredCapabilities, httpOptions={}) ->
-    assert.truthy 'new WebDriver(desiredCapabilities) - requires desiredCapabilities', desiredCapabilities
+  constructor: (serverUrl, desiredCapabilities, httpOptions={}) ->
+    assert.truthy 'new WebDriver(serverUrl, desiredCapabilities, httpOptions) - requires serverUrl', serverUrl
+    assert.truthy 'new WebDriver(serverUrl, desiredCapabilities, httpOptions) - requires desiredCapabilities', desiredCapabilities
 
-    @http = http(httpOptions, desiredCapabilities)
+    @http = http(serverUrl, desiredCapabilities, httpOptions)
 
     extend this, createAlertApi(@http)
     extend this, createCookieApi(@http)
