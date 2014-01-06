@@ -1,6 +1,6 @@
 {
   "name": "webdriver-http-sync",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Sync HTTP implementation of the WebDriver protocol",
   "publishConfig": {
     "license": {
