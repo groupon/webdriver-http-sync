@@ -1,16 +1,24 @@
 json = require './json'
 
-module.exports = (response) ->
-  data = response.body.toString()
-  response = (json.tryParse data).value
+cleanResponse = (response) ->
   delete response.screen
   delete response.hCode # unhelpful selenium noise
   delete response.class # unhelpful selenium noise
 
-  if response.message? && response.stackTrace?
-    friendlyError = new Error response.message
-    friendlyError.inner = response
-    throw friendlyError
+validateRersponse = (response) ->
+  return if !response.message? || !response.stackTrace?
+
+  friendlyError = new Error response.message
+  friendlyError.inner = response
+  throw friendlyError
+
+module.exports = (response) ->
+  data = response.body.toString()
+  response = (json.tryParse data).value
+
+  if response?
+    cleanResponse(response)
+    validateRersponse(response)
 
   response
 
