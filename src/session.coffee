@@ -30,68 +30,23 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
+assert = require 'assertive'
 json = require './json'
 parseResponseData = require './parse_response'
-{EventEmitter} = require 'events'
 
-clone = (object) ->
-  json.tryParse JSON.stringify object
+module.exports = (request, serverUrl, desiredCapabilities) ->
+  url = "#{serverUrl}/session"
+  data = JSON.stringify { desiredCapabilities }
+  response = request(url, 'POST', data)
 
-normalizeUrl = (serverUrl, sessionRoot, url) ->
-  if url.indexOf('http') == 0
-    url
-  else
-    serverUrl + sessionRoot + url
+  assert.equal 'Failed to start Selenium session. Check the selenium.log.', response.statusCode, 200
 
-emitter = new EventEmitter
+  sessionId = (json.tryParse response.body.toString()).sessionId
+  capabilities = parseResponseData response
+  assert.truthy 'found sessionId', sessionId
 
-log = (message) ->
-  emitter.emit 'request', message
-
-verbose = (response) ->
-  parsed = parseResponseData(response)
-  message = clone response
-  message.body = JSON.stringify parsed
-  emitter.emit 'response', message
-
-registerEventHandler = (event, callback) ->
-  if event not in ['request', 'response']
-    throw new Error "Invalid event name '#{event}'. The WebDriver http module only emits 'request' and 'response' events."
-  emitter.on event, callback
-
-module.exports = (request, serverUrl, sessionId) ->
-  sessionRoot = "/session/#{sessionId}"
-
-  get = (url) ->
-    url = normalizeUrl(serverUrl, sessionRoot, url)
-    log "[WEB] GET #{url}"
-    response = request(url)
-    verbose response
-    response
-
-  post = (url, data={}) ->
-    url = normalizeUrl(serverUrl, sessionRoot, url)
-    method = 'POST'
-    data = JSON.stringify(data)
-    log "[WEB] POST #{url} : #{data}"
-    response = request(url, method, data)
-    verbose response
-    response
-
-  del = (url) ->
-    url = normalizeUrl(serverUrl, sessionRoot, url)
-    method = 'DELETE'
-    log "[WEB] DELETE #{url}"
-    response = request(url, method)
-    verbose response
-    response
-
-  http = {
-    get
-    post
-    delete: del
-    on: registerEventHandler
+  {
+    sessionId
+    capabilities
   }
-
-  return http
 
