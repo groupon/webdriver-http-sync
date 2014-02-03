@@ -32,28 +32,34 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 assert = require 'assertive'
 http = require './http'
-json = require './json'
 {extend} = require 'underscore'
 parseResponseData = require './parse_response'
+createSession = require './session'
+buildRequester = require './request'
 
 createAlertApi = require './alert_api'
 createCookieApi = require './cookie_api'
 createElementApi = require './element_api'
 createNavigationApi = require './navigation_api'
 createPageApi = require './page_api'
+createDebugApi = require './debug_api'
 
 module.exports = class WebDriver
   constructor: (serverUrl, desiredCapabilities, httpOptions={}) ->
     assert.truthy 'new WebDriver(serverUrl, desiredCapabilities, httpOptions) - requires serverUrl', serverUrl
     assert.truthy 'new WebDriver(serverUrl, desiredCapabilities, httpOptions) - requires desiredCapabilities', desiredCapabilities
 
-    @http = http(serverUrl, desiredCapabilities, httpOptions)
+    request = buildRequester(httpOptions)
+
+    {sessionId, @capabilities} = createSession(request, serverUrl, desiredCapabilities)
+    @http = http(request, serverUrl, sessionId)
 
     extend this, createAlertApi(@http)
     extend this, createCookieApi(@http)
     extend this, createElementApi(@http)
     extend this, createNavigationApi(@http)
     extend this, createPageApi(@http)
+    extend this, createDebugApi(@http)
 
   on: (event, callback) ->
     if event not in ['request', 'response']

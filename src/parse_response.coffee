@@ -13,6 +13,8 @@ validateRersponse = (response) ->
   throw friendlyError
 
 module.exports = (response) ->
+  return null if response.body == ''
+
   data = response.body.toString()
   response = (json.tryParse data).value
 
