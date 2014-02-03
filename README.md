@@ -10,7 +10,7 @@ On Ubuntu, you need to make sure you have libcurl installed.
 `sudo apt-get install libcurl4-openssl-dev`
 
 ```bash
-npm install sync-node-webdriver
+npm install webdriver-http-sync
 ```
 
 ## WebDriver API
