@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/groupon/webdriver-http-sync"
+    "url": "git://github.com/groupon-testium/webdriver-http-sync"
   },
   "main": "lib/index.js",
   "dependencies": {
