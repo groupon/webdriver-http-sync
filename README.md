@@ -1,8 +1,12 @@
-# sync-node-webdriver
+# webdriver-http-sync
 
 Sync implementation of the
 [WebDriver protocol](https://code.google.com/p/selenium/wiki/JsonWireProtocol)
 in Node.js.
+
+Keep up to date with changes
+by checking the
+[releases](https://github.com/groupon-testium/webdriver-http-sync/releases).
 
 ## Install
 
