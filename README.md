@@ -51,7 +51,7 @@ Method | Description
 Method | Description
 :----- | :----------
 `element.get(attribute)` | Returns the element's specified attribute, which can be `text`, which returns the visisble text of that element.
-`element.isVisible()` | Returns true if the element is visiable.
+`element.isVisible()` | Returns true if the element is visible.
 `element.type(strings...)` | Sends `strings...` to the input element.
 `element.clear()` | Clears the input element.
 `element.click()` | Calls click on the element.
