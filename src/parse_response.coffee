@@ -5,7 +5,7 @@ cleanResponse = (response) ->
   delete response.hCode # unhelpful selenium noise
   delete response.class # unhelpful selenium noise
 
-validateRersponse = (response) ->
+validateResponse = (response) ->
   return if !response.message? || !response.stackTrace?
 
   friendlyError = new Error response.message
@@ -20,7 +20,7 @@ module.exports = (response) ->
 
   if response?
     cleanResponse(response)
-    validateRersponse(response)
+    validateResponse(response)
 
   response
 
