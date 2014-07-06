@@ -30,7 +30,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-httpsync = require 'http-sync'
+{httpSync} = require 'request-sync'
 {extend} = require 'underscore'
 parseUrl = require('url').parse
 
@@ -73,7 +73,7 @@ module.exports = ({timeout, connectTimeout}) ->
 
     options = extend {}, options, getUrlParts(url)
 
-    httpSyncRequest = httpsync.request(options)
+    httpSyncRequest = httpSync.request(options)
 
     httpSyncRequest.setTimeout timeout, ->
       throw new Error "Request timed out after #{timeout}ms to: #{url}"
