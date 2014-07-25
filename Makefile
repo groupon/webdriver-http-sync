@@ -12,7 +12,7 @@ setup:
 	npm install
 
 build: $(LIB)
-	@./node_modules/.bin/npub prep lib
+	@./node_modules/.bin/npub prep src
 
 prepublish:
 	./node_modules/.bin/npub prep
