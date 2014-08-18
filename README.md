@@ -72,7 +72,7 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/timeouts` |  Configure the amount of time that a particular type of operation can execute for before they are aborted and a `Timeout` error is returned to the client.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/timeouts/async_script` | Set the amount of time, in milliseconds, that asynchronous scripts executed by `/session/:sessionId/execute_async` are permitted to run before they are aborted and a `Timeout` error is returned to the client.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/timeouts/implicit_wait` |  Set the amount of time the driver should wait when searching for elements.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/window_handle` | Retrieve the current window handle.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/window_handle` | Retrieve the current window handle.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/window_handles` |  Retrieve the list of all window handles available to the session.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/url` | Retrieve the URL of the current page.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/url` | Navigate to a new URL.
@@ -87,9 +87,9 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/ime/activated` | Indicates whether IME input is active at the moment (not if it's available.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/ime/deactivate` |  De-activates the currently-active IME engine.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/ime/activate` |  Make an engines that is available (appears on the listreturned by getAvailableEngines) active.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/frame` | Change focus to another frame on the page.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/window` |  Change focus to another window.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | DELETE | `/session/:sessionId/window` |  Close the current window.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/frame` | Change focus to another frame on the page.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/window` |  Change focus to another window.
+![Implemented](./docs/implemented.png "Implemented") | DELETE | `/session/:sessionId/window` |  Close the current window.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/window/:windowHandle/size` | Change the size of the specified window.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/window/:windowHandle/size` | Get the size of the specified window.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/window/:windowHandle/position` | Change the position of the specified window.
