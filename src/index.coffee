@@ -43,6 +43,7 @@ createElementApi = require './element_api'
 createNavigationApi = require './navigation_api'
 createPageApi = require './page_api'
 createDebugApi = require './debug_api'
+createMouseApi = require './mouse_api'
 
 module.exports = class WebDriver
   constructor: (serverUrl, desiredCapabilities, httpOptions={}) ->
@@ -60,6 +61,7 @@ module.exports = class WebDriver
     extend this, createNavigationApi(@http)
     extend this, createPageApi(@http)
     extend this, createDebugApi(@http)
+    extend this, createMouseApi(@http)
 
   on: (event, callback) ->
     if event not in ['request', 'response']

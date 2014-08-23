@@ -42,6 +42,7 @@ Method | Description
 `driver.dismissAlert()` | Dismisses the visable alert.
 `driver.getAlertText()` | Gets the visable alert's text.
 `driver.typeAlert(text)` | Send `text` to the visable alert's input box.
+`driver.moveTo(elementId)` | Move the mouse to the top-left corner of the element specified by the `elementId` (WebDriver "opaque" ID).
 `driver.close()` | Closes the WebDriver session.
 
 ### Element
@@ -129,7 +130,7 @@ Status | HTTP Method | Path  | Summary
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/alert_text` |  Sends keystrokes to a JavaScript prompt() dialog.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/accept_alert` |  Accepts the currently displayed alert dialog.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/dismiss_alert` | Dismisses the currently displayed alert dialog.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/moveto` |  Move the mouse by an offset of the specificed element.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/moveto` |  Move the mouse by an offset of the specificed element.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/click` | Click any mouse button (at the coordinates set by the last moveto command).
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/buttondown` |  Click and hold the left mouse button (at the coordinates set by the last moveto command).
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/buttonup` |  Releases the mouse button previously held (where the mouse is currently at).
