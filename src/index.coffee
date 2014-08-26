@@ -40,6 +40,7 @@ buildRequester = require './request'
 createAlertApi = require './alert_api'
 createCookieApi = require './cookie_api'
 createElementApi = require './element_api'
+createLocationApi = require './location_api'
 createNavigationApi = require './navigation_api'
 createPageApi = require './page_api'
 createDebugApi = require './debug_api'
@@ -58,6 +59,7 @@ module.exports = class WebDriver
     extend this, createAlertApi(@http)
     extend this, createCookieApi(@http)
     extend this, createElementApi(@http)
+    extend this, createLocationApi(@http)
     extend this, createNavigationApi(@http)
     extend this, createPageApi(@http)
     extend this, createDebugApi(@http)
@@ -84,4 +86,3 @@ module.exports = class WebDriver
       friendlyError = new Error "Error evaluating JavaScript: #{clientFunctionString}\n#{error.message}"
       friendlyError.inner = error
       throw friendlyError
-

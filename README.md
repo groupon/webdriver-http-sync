@@ -59,6 +59,8 @@ Method | Description
 `driver.dismissAlert()` | Dismisses the visable alert.
 `driver.getAlertText()` | Gets the visable alert's text.
 `driver.typeAlert(text)` | Send `text` to the visable alert's input box.
+`driver.getGeolocation()` | Returns the browser's HTML5 geolocation. Ex: `{latitude: 37.425, longitude: -122.136, altitude: 10.0}`. Not supported in all browsers.
+`driver.setGeolocation(location)` | Set the browser's HTML5 geolocation. Expects `location` to be an object like `{latitude: 37.425, longitude: -122.136, altitude: 10.0}`. Not supported in all browsers.
 `driver.close()` | Closes the WebDriver session.
 
 ### Element
@@ -164,8 +166,8 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `session/:sessionId/touch/longclick` |  Long press on the touch screen using finger motion events.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `session/:sessionId/touch/flick` |  Flick on the touch screen using finger motion events.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `session/:sessionId/touch/flick` |  Flick on the touch screen using finger motion events.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/location` |  Get the current geo location.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/location` |  Set the current geo location.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/location` |  Get the current geo location.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/location` |  Set the current geo location.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/local_storage` | Get all keys of the storage.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/local_storage` | Set the storage item for the given key.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | DELETE | `/session/:sessionId/local_storage` | Clear the storage.
