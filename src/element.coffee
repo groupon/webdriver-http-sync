@@ -64,6 +64,10 @@ module.exports = class Element
     response = @http.get "#{@root}/attribute/#{attribute}"
     parseResponseData response
 
+  getLocation: ->
+    response = @http.get "#{@root}/location"
+    parseResponseData response
+
   getLocationInView: ->
     response = @http.get "#{@root}/location_in_view"
     parseResponseData response
@@ -89,4 +93,3 @@ module.exports = class Element
   clear: ->
     @http.post "#{@root}/clear"
     return
-

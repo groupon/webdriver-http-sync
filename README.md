@@ -50,7 +50,10 @@ Method | Description
 
 Method | Description
 :----- | :----------
-`element.get(attribute)` | Returns the element's specified attribute, which can be `text`, which returns the visisble text of that element.
+`element.get(attribute)` | Returns the element's specified attribute, which can be `text`, which returns the visible text of that element.
+`element.getLocation()` | Return an element's pixel location on the page. Ex: `{ y: 80, x: 406 }`
+`element.getLocationInView()` | Return an element's pixel location on the screen once it has been scrolled into view. Ex: `{ y: 80, x: 406 }`
+`element.getSize()` | Returns an element's size in pixels. Ex: `{ height: 207, width: 269 }`
 `element.isVisible()` | Returns true if the element is visible.
 `element.type(strings...)` | Sends `strings...` to the input element.
 `element.clear()` | Clears the input element.
@@ -121,7 +124,7 @@ Status | HTTP Method | Path  | Summary
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/displayed` | Determine if an element is currently displayed.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/location` |  Determine an element's location on the page.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/location_in_view` |  Determine an element's location on the screen once it has been scrolled into view.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/size` |  Determine an element's size in pixels.
+![Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/size` |  Determine an element's size in pixels.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/css/:propertyName` | Query the value of an element's computed CSS property.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/orientation` | Get the current browser orientation.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/orientation` | Set the browser orientation.
@@ -161,4 +164,3 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/log` | Get the log for a given log type.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/log/types` | Get available log types.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/application_cache/status` |  Get the status of the html5 application cache.
-
