@@ -139,9 +139,9 @@ Status | HTTP Method | Path  | Summary
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/attribute/:name` | Get the value of an element's attribute.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/equals/:other` | Test if two element IDs refer to the same DOM element.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/displayed` | Determine if an element is currently displayed.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/location` |  Determine an element's location on the page.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/location` |  Determine an element's location on the page.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/location_in_view` |  Determine an element's location on the screen once it has been scrolled into view.
-![Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/size` |  Determine an element's size in pixels.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/size` |  Determine an element's size in pixels.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/css/:propertyName` | Query the value of an element's computed CSS property.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/orientation` | Get the current browser orientation.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/orientation` | Set the browser orientation.
