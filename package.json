@@ -21,7 +21,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "http-sync": "0.0.4",
+    "request-sync": "0.0.5",
     "assertive": "~1.2.0",
     "underscore": "~1.5.2"
   },
