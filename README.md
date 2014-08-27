@@ -24,19 +24,19 @@ npm install webdriver-http-sync
 Invocation:
 
 ```javascript
-driver = new WebDriver(serverUrl, desiredCapabilities, httpOptions);
+var driver = new WebDriver(serverUrl, desiredCapabilities, httpOptions);
 ```
 
 Simple Example:
 
 ```javascript
-WebDriver = require('webdriver-http-sync');
-desiredCapabilities = {browserName: 'firefox'};
+var WebDriver = require('webdriver-http-sync');
+var desiredCapabilities = {browserName: 'firefox'};
 
 // Assuming selenium (packaged separately) has already been started:
 // java -jar selenium-server-standalone-2.42.2.jar
 
-driver = new WebDriver('http://127.0.0.1:4444/wd/hub', desiredCapabilities);
+var driver = new WebDriver('http://127.0.0.1:4444/wd/hub', desiredCapabilities);
 driver.navigateTo('http://www.google.com');
 ```
 
