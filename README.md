@@ -21,7 +21,24 @@ npm install webdriver-http-sync
 
 ### WebDriver
 
-`driver = new WebDriver(serverUrl, desiredCapabilities, httpOptions)`
+Invocation:
+
+```javascript
+var driver = new WebDriver(serverUrl, desiredCapabilities, httpOptions);
+```
+
+Simple Example:
+
+```javascript
+var WebDriver = require('webdriver-http-sync');
+var desiredCapabilities = {browserName: 'firefox'};
+
+// Assuming selenium (packaged separately) has already been started:
+// java -jar selenium-server-standalone-2.42.2.jar
+
+var driver = new WebDriver('http://127.0.0.1:4444/wd/hub', desiredCapabilities);
+driver.navigateTo('http://www.google.com');
+```
 
 Method | Description
 :----- | :----------
@@ -38,10 +55,15 @@ Method | Description
 `driver.setCookie(Cookie)` | Sets a cookie on the current page's domain. `Cookie = { name, value, path='/' }`
 `driver.getCookies()` | Returns all cookies visible to the current page.
 `driver.clearCookies()` | Deletes all cookies visible to the current page.
+`driver.setLocalStorageKey(key, value)` | Sets a local storage item for the current page.
+`driver.getLocalStorageKeys()` | Returns all local storage keys visible to the current page.
+`driver.clearLocalStorage()` | Deletes all local storage visible to the current page.
 `driver.acceptAlert()` | Accepts the visable alert.
 `driver.dismissAlert()` | Dismisses the visable alert.
 `driver.getAlertText()` | Gets the visable alert's text.
 `driver.typeAlert(text)` | Send `text` to the visable alert's input box.
+`driver.getGeolocation()` | Returns the browser's HTML5 geolocation. Ex: `{latitude: 37.425, longitude: -122.136, altitude: 10.0}`. Not supported in all browsers.
+`driver.setGeolocation(location)` | Set the browser's HTML5 geolocation. Expects `location` to be an object like `{latitude: 37.425, longitude: -122.136, altitude: 10.0}`. Not supported in all browsers.
 `driver.close()` | Closes the WebDriver session.
 
 ### Element
@@ -50,7 +72,10 @@ Method | Description
 
 Method | Description
 :----- | :----------
-`element.get(attribute)` | Returns the element's specified attribute, which can be `text`, which returns the visisble text of that element.
+`element.get(attribute)` | Returns the element's specified attribute, which can be `text`, which returns the visible text of that element.
+`element.getLocation()` | Return an element's pixel location on the page. Ex: `{ y: 80, x: 406 }`
+`element.getLocationInView()` | Return an element's pixel location on the screen once it has been scrolled into view. Ex: `{ y: 80, x: 406 }`
+`element.getSize()` | Returns an element's size in pixels. Ex: `{ height: 207, width: 269 }`
 `element.isVisible()` | Returns true if the element is visible.
 `element.type(strings...)` | Sends `strings...` to the input element.
 `element.clear()` | Clears the input element.
@@ -119,9 +144,9 @@ Status | HTTP Method | Path  | Summary
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/attribute/:name` | Get the value of an element's attribute.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/equals/:other` | Test if two element IDs refer to the same DOM element.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/displayed` | Determine if an element is currently displayed.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/location` |  Determine an element's location on the page.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/location` |  Determine an element's location on the page.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/location_in_view` |  Determine an element's location on the screen once it has been scrolled into view.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/size` |  Determine an element's size in pixels.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/size` |  Determine an element's size in pixels.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id/css/:propertyName` | Query the value of an element's computed CSS property.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/orientation` | Get the current browser orientation.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/orientation` | Set the browser orientation.
@@ -144,11 +169,11 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `session/:sessionId/touch/longclick` |  Long press on the touch screen using finger motion events.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `session/:sessionId/touch/flick` |  Flick on the touch screen using finger motion events.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `session/:sessionId/touch/flick` |  Flick on the touch screen using finger motion events.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/location` |  Get the current geo location.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/location` |  Set the current geo location.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/local_storage` | Get all keys of the storage.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/local_storage` | Set the storage item for the given key.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | DELETE | `/session/:sessionId/local_storage` | Clear the storage.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/location` |  Get the current geo location.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/location` |  Set the current geo location.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/local_storage` | Get all keys of the storage.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/local_storage` | Set the storage item for the given key.
+![Implemented](./docs/implemented.png "Implemented") | DELETE | `/session/:sessionId/local_storage` | Clear the storage.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/local_storage/key/:key` |  Get the storage item for the given key.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | DELETE | `/session/:sessionId/local_storage/key/:key` |  Remove the storage item for the given key.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/local_storage/size` |  Get the number of items in the storage.
@@ -161,4 +186,3 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/log` | Get the log for a given log type.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/log/types` | Get available log types.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/application_cache/status` |  Get the status of the html5 application cache.
-
