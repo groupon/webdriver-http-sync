@@ -31,7 +31,7 @@ Simple Example:
 
 ```javascript
 WebDriver = require('webdriver-http-sync');
-desiredCapabilities = {browserName:' firefox'};
+desiredCapabilities = {browserName: 'firefox'};
 
 // Assuming selenium (packaged separately) has already been started:
 // java -jar selenium-server-standalone-2.42.2.jar
