@@ -55,6 +55,9 @@ Method | Description
 `driver.setCookie(Cookie)` | Sets a cookie on the current page's domain. `Cookie = { name, value, path='/' }`
 `driver.getCookies()` | Returns all cookies visible to the current page.
 `driver.clearCookies()` | Deletes all cookies visible to the current page.
+`driver.setLocalStorageKey(key, value)` | Sets a local storage item for the current page.
+`driver.getLocalStorageKeys()` | Returns all local storage keys visible to the current page.
+`driver.clearLocalStorage()` | Deletes all local storage visible to the current page.
 `driver.acceptAlert()` | Accepts the visable alert.
 `driver.dismissAlert()` | Dismisses the visable alert.
 `driver.getAlertText()` | Gets the visable alert's text.
@@ -168,9 +171,9 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `session/:sessionId/touch/flick` |  Flick on the touch screen using finger motion events.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/location` |  Get the current geo location.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/location` |  Set the current geo location.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/local_storage` | Get all keys of the storage.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/local_storage` | Set the storage item for the given key.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | DELETE | `/session/:sessionId/local_storage` | Clear the storage.
+![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/local_storage` | Get all keys of the storage.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/local_storage` | Set the storage item for the given key.
+![Implemented](./docs/implemented.png "Implemented") | DELETE | `/session/:sessionId/local_storage` | Clear the storage.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/local_storage/key/:key` |  Get the storage item for the given key.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | DELETE | `/session/:sessionId/local_storage/key/:key` |  Remove the storage item for the given key.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/local_storage/size` |  Get the number of items in the storage.
