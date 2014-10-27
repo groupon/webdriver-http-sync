@@ -36,14 +36,6 @@ json = require './json'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
 
-get = (http, root, property) ->
-  response = http.get "#{root}/#{property}"
-  try
-    return parseResponseData response
-  catch error
-    error.message = "Error retrieving #{property} from element.\n#{error.message}"
-    throw error
-
 module.exports = class Element
   constructor: (@http, @elementId) ->
     assert.truthy 'new Element(http, elementId) - requires http', @http
@@ -58,10 +50,13 @@ module.exports = class Element
   get: (attribute) ->
     assert.truthy 'get(attribute) - requires attribute', attribute
 
-    if attribute in ['text', 'value']
-      return get(@http, @root, attribute)
+    pathname =
+      if attribute == 'text'
+        "#{@root}/text"
+      else
+        "#{@root}/attribute/#{attribute}"
 
-    response = @http.get "#{@root}/attribute/#{attribute}"
+    response = @http.get pathname
     parseResponseData response
 
   getLocation: ->

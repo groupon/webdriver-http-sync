@@ -74,7 +74,7 @@ module.exports = class WebDriver
 
   close: ->
     # delete session
-    @http.delete '/'
+    @http.delete ''
     return
 
   evaluate: (clientFunctionString) ->
