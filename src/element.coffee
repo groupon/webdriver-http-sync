@@ -33,7 +33,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 http = require './http'
 assert = require 'assertive'
 json = require './json'
-Element = require './element'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
 
