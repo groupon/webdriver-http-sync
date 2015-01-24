@@ -44,6 +44,14 @@ createElement = (http, selector, root) ->
 
   parseElement http, parseResponseData(response).ELEMENT
 
+createElements = (http, selector, root) ->
+  response = http.post "#{root}/elements",
+    using: 'css selector'
+    value: selector
+
+  elements = parseResponseData(response)
+  parseElement(http, element.ELEMENT) for element in elements
+
 parseElement = (http, elementId) ->
   if elementId
     new Element(http, elementId)
@@ -76,6 +84,9 @@ module.exports = class Element
 
   getElement: (selector) ->
     createElement @http, selector, @root
+
+  getElements: (selector) ->
+    createElements @http, selector, @root
 
   getLocation: ->
     response = @http.get "#{@root}/location"
