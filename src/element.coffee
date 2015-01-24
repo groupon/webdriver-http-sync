@@ -33,8 +33,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 http = require './http'
 assert = require 'assertive'
 json = require './json'
+Element = require './element'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
+
+createElement = (http, selector, root) ->
+  response = http.post "#{root}/element",
+    using: 'css selector'
+    value: selector
+
+  parseElement http, parseResponseData(response).ELEMENT
+
+parseElement = (http, elementId) ->
+  if elementId
+    new Element(http, elementId)
+  else
+    null
+
 
 module.exports = class Element
   constructor: (@http, @elementId) ->
@@ -58,6 +73,9 @@ module.exports = class Element
 
     response = @http.get pathname
     parseResponseData response
+
+  getElement: (selector) ->
+    createElement @http, selector, @root
 
   getLocation: ->
     response = @http.get "#{@root}/location"
