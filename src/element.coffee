@@ -35,6 +35,7 @@ assert = require 'assertive'
 json = require './json'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
+{map} = require 'underscore'
 
 createElement = (http, selector, root) ->
   response = http.post "#{root}/element",
@@ -57,6 +58,15 @@ parseElement = (http, elementId) ->
   else
     null
 
+encodeUTF = (string) ->
+  # encoding UTF is required to make WebDriver see it properly,
+  # but it comes back out (e.g., `element.get('text')`)
+  # without the need for decoding it
+  #
+  # this is "a quick way to implement a UTF-8 encoder/decoder,
+  # by leveraging the UTF-8 processing in URIComponent handling"
+  # http://stackoverflow.com/questions/619323/decodeuricomponent-vs-unescape-what-is-wrong-with-unescape/619428#619428
+  unescape(encodeURIComponent(string))
 
 module.exports = class Element
   constructor: (@http, @elementId) ->
@@ -110,6 +120,7 @@ module.exports = class Element
 
   type: (strings...) ->
     assert.truthy 'type(strings) - requires strings', strings
+    strings = strings.map(encodeUTF)
     @http.post "#{@root}/value", {value: strings}
     return
 
