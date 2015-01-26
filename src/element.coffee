@@ -59,6 +59,13 @@ parseElement = (http, elementId) ->
     null
 
 encodeUTF = (string) ->
+  # encoding UTF is required to make WebDriver see it properly,
+  # but it comes back out (e.g., `element.get('text')`)
+  # without the need for decoding it
+  #
+  # this is "a quick way to implement a UTF-8 encoder/decoder,
+  # by leveraging the UTF-8 processing in URIComponent handling"
+  # http://stackoverflow.com/questions/619323/decodeuricomponent-vs-unescape-what-is-wrong-with-unescape/619428#619428
   unescape(encodeURIComponent(string))
 
 module.exports = class Element
