@@ -35,6 +35,7 @@ assert = require 'assertive'
 json = require './json'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
+{map} = require 'underscore'
 
 createElement = (http, selector, root) ->
   response = http.post "#{root}/element",
@@ -57,6 +58,8 @@ parseElement = (http, elementId) ->
   else
     null
 
+encodeUTF = (string) ->
+  unescape(encodeURIComponent(string))
 
 module.exports = class Element
   constructor: (@http, @elementId) ->
@@ -110,6 +113,7 @@ module.exports = class Element
 
   type: (strings...) ->
     assert.truthy 'type(strings) - requires strings', strings
+    strings = strings.map(encodeUTF)
     @http.post "#{@root}/value", {value: strings}
     return
 
