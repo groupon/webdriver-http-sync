@@ -73,8 +73,8 @@ Method | Description
 Method | Description
 :----- | :----------
 `element.get(attribute)` | Returns the element's specified attribute, which can be `text`, which returns the visible text of that element.
-`element.getElement(cssSelector)` | Finds an element on the `element` using the `cssSelector` and returns an Element.
-`element.getElements(cssSelector)` | Finds all elements on the `element` using the `cssSelector` and returns an array of Elements.
+`element.getElement(cssSelector)` | Finds a child element of `element` using the `cssSelector` and returns an Element.
+`element.getElements(cssSelector)` | Finds all child elements of the `element` using the `cssSelector` and returns an array of Elements.
 `element.getLocation()` | Return an element's pixel location on the page. Ex: `{ y: 80, x: 406 }`
 `element.getLocationInView()` | Return an element's pixel location on the screen once it has been scrolled into view. Ex: `{ y: 80, x: 406 }`
 `element.getSize()` | Returns an element's size in pixels. Ex: `{ height: 207, width: 269 }`
