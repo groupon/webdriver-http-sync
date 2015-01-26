@@ -39,7 +39,7 @@ module.exports = (request, serverUrl, desiredCapabilities) ->
   data = JSON.stringify { desiredCapabilities }
   response = request(url, 'POST', data)
 
-  assert.equal 'Failed to start Selenium session. Check the selenium.log.', response.statusCode, 200
+  assert.equal 'Failed to start WebDriver session.', response.statusCode, 200
 
   sessionId = (json.tryParse response.body.toString()).sessionId
   capabilities = parseResponseData response
