@@ -36,6 +36,28 @@ json = require './json'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
 
+createElement = (http, selector, root) ->
+  response = http.post "#{root}/element",
+    using: 'css selector'
+    value: selector
+
+  parseElement http, parseResponseData(response).ELEMENT
+
+createElements = (http, selector, root) ->
+  response = http.post "#{root}/elements",
+    using: 'css selector'
+    value: selector
+
+  elements = parseResponseData(response)
+  parseElement(http, element.ELEMENT) for element in elements
+
+parseElement = (http, elementId) ->
+  if elementId
+    new Element(http, elementId)
+  else
+    null
+
+
 module.exports = class Element
   constructor: (@http, @elementId) ->
     assert.truthy 'new Element(http, elementId) - requires http', @http
@@ -58,6 +80,12 @@ module.exports = class Element
 
     response = @http.get pathname
     parseResponseData response
+
+  getElement: (selector) ->
+    createElement @http, selector, @root
+
+  getElements: (selector) ->
+    createElements @http, selector, @root
 
   getLocation: ->
     response = @http.get "#{@root}/location"

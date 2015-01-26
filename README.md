@@ -73,6 +73,8 @@ Method | Description
 Method | Description
 :----- | :----------
 `element.get(attribute)` | Returns the element's specified attribute, which can be `text`, which returns the visible text of that element.
+`element.getElement(cssSelector)` | Finds a child element of `element` using the `cssSelector` and returns an Element.
+`element.getElements(cssSelector)` | Finds all child elements of the `element` using the `cssSelector` and returns an array of Elements.
 `element.getLocation()` | Return an element's pixel location on the page. Ex: `{ y: 80, x: 406 }`
 `element.getLocationInView()` | Return an element's pixel location on the screen once it has been scrolled into view. Ex: `{ y: 80, x: 406 }`
 `element.getSize()` | Returns an element's size in pixels. Ex: `{ height: 207, width: 269 }`
@@ -130,8 +132,8 @@ Status | HTTP Method | Path  | Summary
 ![Partially Implemented](./docs/partially_implemented.png "Can only find via CSS selector") | POST | `/session/:sessionId/elements` | Search for multiple elements on the page with a CSS selector, starting from the document root.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/element/active` |  Get the element on the page that currently has focus.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/element/:id` | Describe the identified element.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/element/:id/element` | Search for an element on the page, starting from the identified element.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/element/:id/elements` |  Search for multiple elements on the page, starting from the identified element.
+![Partially Implemented](./docs/partially_implemented.png "Can only find via CSS selector") | POST | `/session/:sessionId/element/:id/element` | Search for an element on the page, starting from the identified element.
+![Partially Implemented](./docs/partially_implemented.png "Can only find via CSS selector") | POST | `/session/:sessionId/element/:id/elements` |  Search for multiple elements on the page, starting from the identified element.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/element/:id/click` | Click on an element.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/element/:id/submit` |  Submit a FORM element.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/element/:id/text` |  Returns the visible text for the element.
