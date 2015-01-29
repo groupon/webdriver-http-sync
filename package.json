@@ -26,8 +26,10 @@
     "underscore": "~1.5.2"
   },
   "devDependencies": {
-    "coffee-script-redux": "2.0.0-beta6",
-    "semver": "~1.1.4",
-    "npub": "0.0.5"
+    "assertive": "^1.2.0",
+    "coffee-script": "^1.8.0",
+    "mocha": "^2.1.0",
+    "npub": "0.0.5",
+    "semver": "~1.1.4"
   }
 }
