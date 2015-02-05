@@ -30,55 +30,41 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-{httpSync} = require 'request-sync'
-{extend} = require 'underscore'
 parseUrl = require('url').parse
+
+{request} = require 'http-sync'
+debug = require('debug')('webdriver-http-sync:request')
 
 TIMEOUT = 60000
 CONNECT_TIMEOUT = 2000
 
-makeRequest = (request, data) ->
-  if data
-    request.end(data)
-  else
-    request.end()
+makeResponse = ({headers, body, statusCode}) ->
+  lcHeaders = {}
+  for name, value of headers
+    lcHeaders[name.toLowerCase()] = value
+  { headers: lcHeaders, body: body.toString('utf8'), statusCode }
 
-getProtocol = (protocolPart) ->
-  protocolPart.replace(/:$/, '')
-
-getUrlParts = (url) ->
-  parts = parseUrl(url)
-
-  # the translations done here are based on the
-  # expectations of http-sync
-  {
-    port: parts.port
-    path: parts.path
-
-    # port must not be included
-    host: parts.hostname
-
-    # trailing `:` must not be included
-    protocol: getProtocol(parts.protocol)
-  }
-
-module.exports = ({timeout, connectTimeout}) ->
+module.exports = ({timeout, connectTimeout} = {}) ->
   timeout ?= TIMEOUT
   connectTimeout ?= CONNECT_TIMEOUT
 
-  (url, method='get', data=null) ->
-    options = {
-      method
-    }
+  (url, method='GET', data=null) ->
+    debug '%s %s', method, url, data
 
-    options = extend {}, options, getUrlParts(url)
+    body =
+      if data? then new Buffer JSON.stringify(data), 'utf8'
+      else new Buffer ''
 
-    httpSyncRequest = httpSync.request(options)
+    options = parseUrl url
+    options.host = options.hostname
+    options.method = method
+    options.headers =
+      'Content-Type': 'application/json'
+      'Content-Length': body.length
 
-    httpSyncRequest.setTimeout timeout, ->
-      throw new Error "Request timed out after #{timeout}ms to: #{url}"
-    httpSyncRequest.setConnectTimeout connectTimeout, ->
-      throw new Error "Request connection timed out after #{connectTimeout}ms to: #{url}"
-
-    makeRequest(httpSyncRequest, data)
-
+    req = request options
+    req.write body
+    req.setTimeout timeout
+    req.setConnectTimeout connectTimeout
+    result = req.end()
+    makeResponse result

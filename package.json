@@ -19,15 +19,24 @@
     "type": "git",
     "url": "git://github.com/groupon-testium/webdriver-http-sync"
   },
+  "scripts": {
+    "build": "npub prep && coffee -cbo lib src",
+    "prepublish": "rm -rf lib && npm run build",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "posttest": "npub verify"
+  },
   "main": "lib/index.js",
   "dependencies": {
-    "request-sync": "0.0.5",
-    "assertive": "~1.2.0",
-    "underscore": "~1.5.2"
+    "assertive": "^1.4.0",
+    "coffee-script": "^1.9.0",
+    "concat-stream": "^1.4.7",
+    "debug": "^2.1.1",
+    "http-sync": "~0.1.1",
+    "lodash": "^3.1.0"
   },
   "devDependencies": {
-    "coffee-script-redux": "2.0.0-beta6",
-    "semver": "~1.1.4",
-    "npub": "0.0.5"
+    "mocha": "^2.1.0",
+    "npub": "^2.0.0"
   }
 }

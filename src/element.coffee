@@ -35,7 +35,7 @@ assert = require 'assertive'
 json = require './json'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
-{map} = require 'underscore'
+{map} = require 'lodash'
 
 createElement = (http, selector, root) ->
   response = http.post "#{root}/element",
