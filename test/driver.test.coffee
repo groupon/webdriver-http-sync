@@ -39,9 +39,6 @@ describe 'Webdriver', ->
       browserName: 'phantomjs'
     }
 
-  before 'navigate to a page', ->
-    @driver.navigateTo webUrl
-
   after 'close session', ->
     @driver?.close()
 
@@ -51,8 +48,25 @@ describe 'Webdriver', ->
   after 'tear down test-server', ->
     try @server?.kill()
 
+  before 'navigate to a page', ->
+    @driver.navigateTo webUrl
+
   it 'can get the page title', ->
     assert.equal webTitle, @driver.getPageTitle()
 
   it 'can get the url', ->
     assert.equal webUrl, @driver.getUrl()
+
+  describe 'unicode support', ->
+    multibyteText = "日本語 text"
+
+    it 'supports reading unicode input values', ->
+      element = @driver.getElement '#unicode-input'
+      result = element.get('value')
+      assert.equal multibyteText, result
+
+    it 'supports setting unicode input values', ->
+      element = @driver.getElement '#blank-input'
+      element.type multibyteText
+      result = element.get('value')
+      assert.equal multibyteText, result

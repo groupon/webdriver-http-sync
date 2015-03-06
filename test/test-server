@@ -10,10 +10,13 @@ function respondHtml(req, res) {
     '<!DOCTYPE html>',
     '<html>',
     '<head>',
+    '<meta charset="UTF-8" />',
     '<title>A title</title>',
     '</head>',
     '<body>',
     '<h1>A heading</h1>',
+    '<input id="blank-input" type="text"></input>',
+    '<input id="unicode-input" type="text" value="日本語 text"></input>',
     '</body>',
     '</html>'
   ].join('\n'));
