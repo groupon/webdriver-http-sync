@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 assert = require 'assertive'
 http = require './http'
-{extend} = require 'underscore'
+{extend} = require 'lodash'
 parseResponseData = require './parse_response'
 createSession = require './session'
 buildRequester = require './request'

@@ -72,7 +72,6 @@ module.exports = (request, serverUrl, sessionId) ->
   post = (url, data={}) ->
     url = normalizeUrl(serverUrl, sessionRoot, url)
     method = 'POST'
-    data = JSON.stringify(data)
     log "[WEB] POST #{url} : #{data}"
     response = request(url, method, data)
     verbose response

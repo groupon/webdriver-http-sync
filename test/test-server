@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+'use strict';
+
+var http = require('http');
+
+var webPort = +process.argv[2];
+
+function respondHtml(req, res) {
+  res.end([
+    '<!DOCTYPE html>',
+    '<html>',
+    '<head>',
+    '<meta charset="UTF-8" />',
+    '<title>A title</title>',
+    '</head>',
+    '<body>',
+    '<h1>A heading</h1>',
+    '<input id="blank-input" type="text"></input>',
+    '<input id="unicode-input" type="text" value="日本語 text"></input>',
+    '</body>',
+    '</html>'
+  ].join('\n'));
+}
+
+function respondJSON(req, res) {
+  var body = '';
+  req.setEncoding('utf8');
+  req.on('data', function(chunk) { body += chunk; });
+  req.on('end', function() {
+    res.end(JSON.stringify({
+      headers: req.headers,
+      method: req.method,
+      url: req.url,
+      body: body
+    }));
+  });
+}
+
+function handler(req, res) {
+  if (/^\/json/.test(req.url)) {
+    return respondJSON(req, res);
+  }
+  return respondHtml(req, res);
+}
+
+http.createServer(handler).listen(webPort);
