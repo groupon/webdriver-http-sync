@@ -8,6 +8,8 @@ Keep up to date with changes
 by checking the
 [releases](https://github.com/groupon-testium/webdriver-http-sync/releases).
 
+Tested on node.js 0.10.* and io.js.
+
 ## Install
 
 On Ubuntu, you need to make sure you have libcurl installed.
