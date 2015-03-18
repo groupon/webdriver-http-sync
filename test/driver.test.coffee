@@ -13,10 +13,13 @@ webUrl = "http://127.0.0.1:#{webPort}/"
 webTitle = 'A title'
 testServer = path.join __dirname, 'test-server'
 
+DEBUG = false
+
 describe 'Webdriver', ->
   before 'example website', (done) ->
     @server = execFile testServer, [ '' + webPort ]
     @server.stderr.pipe process.stderr
+    @server.stdout.pipe process.stdout if DEBUG
     setTimeout done, 200
 
   before 'boot phantomjs', (done) ->
@@ -24,6 +27,8 @@ describe 'Webdriver', ->
     @phantom = execFile 'phantomjs', phantomArgs
     phantomOut = ''
     @phantom.on 'error', done
+    @phantom.stdout.pipe process.stdout if DEBUG
+    @phantom.stderr.pipe process.stderr if DEBUG
 
     waitForBoot = (chunk) =>
       phantomOut += chunk.toString 'utf8'
@@ -37,6 +42,8 @@ describe 'Webdriver', ->
   before 'create driver', ->
     @driver = new WebDriver "#{phantomUrl}", {
       browserName: 'phantomjs'
+    },{
+      timeout: 3000
     }
 
   after 'close session', ->
