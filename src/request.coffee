@@ -38,10 +38,7 @@ debug = require('debug')('webdriver-http-sync:request')
 TIMEOUT = 60000
 CONNECT_TIMEOUT = 2000
 
-makeResponse = (error, {headers, body, statusCode}={}) ->
-  if error?
-    return {headers: {}, body: error.stack, statusCode: 408}
-
+makeResponse = ({headers, body, statusCode}={}) ->
   lcHeaders = {}
   for name, value of headers
     lcHeaders[name.toLowerCase()] = value
@@ -68,11 +65,10 @@ module.exports = ({timeout, connectTimeout} = {}) ->
     req = request options
     req.write body
 
-    error = null
     req.setTimeout timeout, ->
-      error = new Error "Request timed out after #{timeout}ms to: #{url}"
+      throw new Error "Request timed out after #{timeout}ms to: #{url}"
     req.setConnectTimeout connectTimeout, ->
-      error = new Error "Request connection timed out after #{connectTimeout}ms to: #{url}"
+      throw new Error "Request connection timed out after #{connectTimeout}ms to: #{url}"
 
     result = req.end()
-    makeResponse error, result
+    makeResponse result

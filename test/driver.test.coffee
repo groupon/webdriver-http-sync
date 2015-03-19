@@ -10,6 +10,7 @@ phantomUrl = "http://127.0.0.1:#{phantomPort}"
 
 webPort = 4497
 webUrl = "http://127.0.0.1:#{webPort}/"
+timeoutUrl = "#{webUrl}timeout"
 webTitle = 'A title'
 testServer = path.join __dirname, 'test-server'
 
@@ -43,7 +44,7 @@ describe 'Webdriver', ->
     @driver = new WebDriver "#{phantomUrl}", {
       browserName: 'phantomjs'
     },{
-      timeout: 3000
+      timeout: 1000
     }
 
   after 'close session', ->
@@ -55,25 +56,31 @@ describe 'Webdriver', ->
   after 'tear down test-server', ->
     try @server?.kill()
 
-  before 'navigate to a page', ->
-    @driver.navigateTo webUrl
+  describe 'at timeout url', ->
+    it 'throws an error when a request times out', ->
+      error = assert.throws => @driver.navigateTo timeoutUrl
+      assert.include /Request connection timed out/, error.message
 
-  it 'can get the page title', ->
-    assert.equal webTitle, @driver.getPageTitle()
+  describe 'at working url', ->
+    before 'navigate to a page', ->
+      @driver.navigateTo webUrl
 
-  it 'can get the url', ->
-    assert.equal webUrl, @driver.getUrl()
+    it 'can get the page title', ->
+      assert.equal webTitle, @driver.getPageTitle()
 
-  describe 'unicode support', ->
-    multibyteText = "日本語 text"
+    it 'can get the url', ->
+      assert.equal webUrl, @driver.getUrl()
 
-    it 'supports reading unicode input values', ->
-      element = @driver.getElement '#unicode-input'
-      result = element.get('value')
-      assert.equal multibyteText, result
+    describe 'unicode support', ->
+      multibyteText = "日本語 text"
 
-    it 'supports setting unicode input values', ->
-      element = @driver.getElement '#blank-input'
-      element.type multibyteText
-      result = element.get('value')
-      assert.equal multibyteText, result
+      it 'supports reading unicode input values', ->
+        element = @driver.getElement '#unicode-input'
+        result = element.get('value')
+        assert.equal multibyteText, result
+
+      it 'supports setting unicode input values', ->
+        element = @driver.getElement '#blank-input'
+        element.type multibyteText
+        result = element.get('value')
+        assert.equal multibyteText, result
