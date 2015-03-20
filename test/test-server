@@ -37,6 +37,9 @@ function respondJSON(req, res) {
 }
 
 function handler(req, res) {
+  if (req.url == '/timeout') {
+    return; //time out
+  }
   if (/^\/json/.test(req.url)) {
     return respondJSON(req, res);
   }

@@ -37,9 +37,14 @@ parseResponseData = require './parse_response'
 module.exports = (request, serverUrl, desiredCapabilities) ->
   url = "#{serverUrl}/session"
   data = { desiredCapabilities }
-  response = request(url, 'POST', data)
 
-  assert.equal 'Failed to start WebDriver session.', response.statusCode, 200
+  try
+    response = request(url, 'POST', data)
+  catch error
+    error.message = "Failed to start WebDriver session: #{error.message}"
+    throw error
+
+  assert.equal "Failed to start WebDriver session: #{response.body}", response.statusCode, 200
 
   sessionId = (json.tryParse response.body.toString()).sessionId
   capabilities = parseResponseData response
