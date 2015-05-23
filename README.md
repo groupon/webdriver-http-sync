@@ -42,6 +42,18 @@ var driver = new WebDriver('http://127.0.0.1:4444/wd/hub', desiredCapabilities);
 driver.navigateTo('http://www.google.com');
 ```
 
+### Sauce Labs
+
+You can use this library with SauceLabs or any another browser service with authorization. Just add your credentials into URL:
+
+```javascript
+var WebDriver = require('webdriver-http-sync');
+var desiredCapabilities = {browserName: 'firefox'};
+
+var driver = new WebDriver('http://SAUCE_USERNAME:SAUCE_API_KEY@ondemand.saucelabs.com:4444/wd/hub', desiredCapabilities);
+driver.navigateTo('http://www.google.com');
+```
+
 Method | Description
 :----- | :----------
 `driver.navigateTo(url)` | Navigates the browser to the specificed relative or absolute url. If relative, the root is assumed to be `http://127.0.0.1:#{applicationPort}`, where `applicationPort` is passed in to the options for `testium.runTests`.

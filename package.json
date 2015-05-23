@@ -32,7 +32,7 @@
     "coffee-script": "^1.9.0",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.1",
-    "http-sync": "~0.1.1",
+    "http-sync": "~0.1.2",
     "lodash": "^3.1.0"
   },
   "devDependencies": {
