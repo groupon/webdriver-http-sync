@@ -29,7 +29,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "assertive": "^1.4.0",
-    "coffee-script": "^1.9.0",
+    "coffee-script": "1.9.1",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.1",
     "http-sync": "~0.1.1",
