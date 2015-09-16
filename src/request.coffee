@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 parseUrl = require('url').parse
 
-{request} = require 'http-sync'
+request = require './http_sync'
 debug = require('debug')('webdriver-http-sync:request')
 
 TIMEOUT = 60000
