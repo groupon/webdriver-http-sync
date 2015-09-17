@@ -29,11 +29,13 @@
   "main": "lib/index.js",
   "dependencies": {
     "assertive": "^1.4.0",
+    "bindings": "~1.2.1",
+    "caseless": "~0.11.0",
     "coffee-script": "1.9.1",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.1",
-    "http-sync": "~0.1.2",
-    "lodash": "^3.1.0"
+    "lodash": "^3.1.0",
+    "nan": "^2.0.9"
   },
   "devDependencies": {
     "mocha": "^2.1.0",
