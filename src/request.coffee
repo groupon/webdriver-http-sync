@@ -30,19 +30,38 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-parseUrl = require('url').parse
-
-request = require './http_sync'
+{extend} = require 'lodash'
 debug = require('debug')('webdriver-http-sync:request')
+
+{curl} = require('bindings')('curllib.node')
 
 TIMEOUT = 60000
 CONNECT_TIMEOUT = 2000
 
-makeResponse = ({headers, body, statusCode}={}) ->
-  lcHeaders = {}
-  for name, value of headers
-    lcHeaders[name.toLowerCase()] = value
-  { headers: lcHeaders, body: body.toString('utf8'), statusCode }
+STATUS_LINE = /HTTP\/[0-9].[0-9] ([0-9]{3})/
+HEADER_LINE = /([^:]+):[\s]*([^\r\n]*)/
+
+parseHeaders = (headerLines) ->
+  statusCode = 200
+  headers = {}
+  headerLines.forEach (line) ->
+    match = line.match STATUS_LINE
+    if match
+      statusCode = parseInt(match[1], 10)
+    else
+      match = line.match HEADER_LINE
+      return unless match?
+      [line, name, value] = match
+      name = name.toLowerCase()
+      entry = headers[name]
+      if entry
+        if typeof entry == 'string'
+          headers[name] = [entry]
+        headers[name].push value
+      else
+        headers[name] = value
+
+  return { statusCode, headers }
 
 module.exports = ({timeout, connectTimeout} = {}) ->
   timeout ?= TIMEOUT
@@ -51,24 +70,24 @@ module.exports = ({timeout, connectTimeout} = {}) ->
   (url, method='GET', data=null) ->
     debug '%s %s', method, url, data
 
-    body =
-      if data? then new Buffer JSON.stringify(data), 'utf8'
-      else new Buffer ''
+    startTime = Date.now()
+    try
+      requestBody = if data? then JSON.stringify data else ''
+      response = curl {
+        method: method?.toUpperCase() ? 'GET'
+        url: url
+        body: requestBody
+        connectTimeout: connectTimeout
+        timeout: timeout
+        headers: [
+          'Content-Type: application/json'
+          "Content-Length: #{Buffer.byteLength requestBody}"
+        ]
+      }
+    catch err
+      throw err unless err.code == 'ETIMEDOUT'
+      elapsed = Date.now() - startTime
+      throw new Error "Request timed out after #{elapsed}ms to: #{url}"
 
-    options = parseUrl url
-    options.host = options.hostname
-    options.method = method
-    options.headers =
-      'Content-Type': 'application/json'
-      'Content-Length': body.length
-
-    req = request options
-    req.write body
-
-    req.setTimeout timeout, ->
-      throw new Error "Request timed out after #{timeout}ms to: #{url}"
-    req.setConnectTimeout connectTimeout, ->
-      throw new Error "Request connection timed out after #{connectTimeout}ms to: #{url}"
-
-    result = req.end()
-    makeResponse result
+    {headers, body} = response
+    extend parseHeaders(headers), { body: body.toString() }
