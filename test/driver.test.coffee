@@ -59,7 +59,7 @@ describe 'Webdriver', ->
   describe 'at timeout url', ->
     it 'throws an error when a request times out', ->
       error = assert.throws => @driver.navigateTo timeoutUrl
-      assert.include /Request connection timed out/, error.message
+      assert.include /Request timed out/, error.message
 
   describe 'at working url', ->
     before 'navigate to a page', ->

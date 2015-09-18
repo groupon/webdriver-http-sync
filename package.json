@@ -31,7 +31,7 @@
     "assertive": "^1.4.0",
     "bindings": "~1.2.1",
     "caseless": "~0.11.0",
-    "coffee-script": "1.9.1",
+    "coffee-script": "1.9.3",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.1",
     "lodash": "^3.1.0",
