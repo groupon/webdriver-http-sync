@@ -35,5 +35,7 @@ module.exports.tryParse = (jsonString) ->
     return JSON.parse jsonString
   catch error
     error.message = "Unable to parse JSON: #{error.message}\nAttempted to parse: #{jsonString}"
+    # creating a stack trace because it wasn't created on rare occasions
+    Error.captureStackTrace error
     throw error
 
