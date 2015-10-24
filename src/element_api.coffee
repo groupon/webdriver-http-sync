@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
 parseResponseData = require './parse_response'
-Element = require './element'
+{elementOrNull} = Element = require './element'
 
 createElement = (http, selector) ->
   response = http.post "/element",
@@ -56,7 +56,8 @@ parseElement = (http, elementId) ->
 
 module.exports = (http) ->
   getElement: (selector) ->
-    createElement http, selector
+    elementOrNull ->
+      createElement http, selector
 
   getElements: (selector) ->
     createElements http, selector

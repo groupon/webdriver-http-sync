@@ -37,10 +37,23 @@ cleanResponse = (response) ->
   delete response.hCode # unhelpful selenium noise
   delete response.class # unhelpful selenium noise
 
-validateResponse = (response) ->
-  return if !response.message? || !response.stackTrace?
+createDetailError = (message) ->
+  if message[0] == '{'
+    details = json.tryParse message
+    if typeof details?.errorMessage == 'string'
+      detailError = new Error details.errorMessage
 
-  friendlyError = new Error response.message
+      for key, value of details
+        detailError[key] = value if key != 'errorMessage'
+
+      return detailError
+
+  new Error message
+
+validateResponse = (response) ->
+  return unless response.message?
+
+  friendlyError = createDetailError response.message
   friendlyError.inner = response
   throw friendlyError
 
