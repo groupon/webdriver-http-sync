@@ -47,3 +47,6 @@ module.exports = (http) ->
     http.delete "/cookie"
     return
 
+  clearCookie: (name) ->
+    http.delete "/cookie/#{encodeURIComponent name}"
+    return

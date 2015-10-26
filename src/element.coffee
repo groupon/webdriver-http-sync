@@ -36,6 +36,12 @@ json = require './json'
 parseResponseData = require './parse_response'
 {inspect} = require 'util'
 
+NOT_FOUND_MESSAGE = new RegExp([
+  'Unable to locate element', # firefox message
+  'Unable to find element', # phantomjs message
+  'no such element', # chrome message
+].join '|')
+
 createElement = (http, selector, root) ->
   response = http.post "#{root}/element",
     using: 'css selector'
@@ -81,7 +87,8 @@ module.exports = class Element
     parseResponseData response
 
   getElement: (selector) ->
-    createElement @http, selector, @root
+    elementOrNull =>
+      createElement @http, selector, @root
 
   getElements: (selector) ->
     createElements @http, selector, @root
@@ -115,3 +122,11 @@ module.exports = class Element
   clear: ->
     @http.post "#{@root}/clear"
     return
+
+elementOrNull = Element.elementOrNull = (create) ->
+  try
+    create()
+  catch error
+    return null if NOT_FOUND_MESSAGE.test error.toString()
+    console.error error.toString()
+    throw error
