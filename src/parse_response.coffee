@@ -30,6 +30,9 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
+{omit} = require 'lodash'
+debug = require('debug')('webdriver-http-sync:parse_response')
+
 json = require './json'
 
 cleanResponse = (response) ->
@@ -50,8 +53,20 @@ createDetailError = (message) ->
 
   new Error message
 
+logWarning = (message) ->
+  if message[0] == '{'
+    details = json.tryParse message
+    if typeof details?.errorMessage == 'string'
+      debug details.errorMessage, omit(details, 'errorMessage')
+    else
+      debug details
+  else
+    debug message
+
 validateResponse = (response) ->
   return unless response.message?
+
+  return logWarning(response.message) unless response.stackTrace?
 
   friendlyError = createDetailError response.message
   friendlyError.inner = response
