@@ -48,6 +48,8 @@
   },
   "files": [
     "*.js",
+    "binding.gyp",
+    "curllib.cc",
     "lib"
   ],
   "publishConfig": {
