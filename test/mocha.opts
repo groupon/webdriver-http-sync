@@ -1,4 +1,3 @@
 --compilers test.coffee:coffee-script/register
 --recursive
 --timeout 30000
---reporter spec

@@ -1,5 +1,4 @@
 language: node_js
-sudo: false
 node_js:
   - '0.10'
   - '4'
@@ -8,6 +7,18 @@ env:
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
+      - g++-4.8
+before_install:
+  - npm install -g npm@latest-2
+before_deploy:
+  - 'git config --global user.email "smassa@groupon.com"'
+  - 'git config --global user.name "Sean Massa"'
+deploy:
+  provider: script
+  script: ./node_modules/.bin/nlm release
+  skip_cleanup: true
+  'on':
+    branch: master
+    node: '4'

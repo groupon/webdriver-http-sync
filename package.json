@@ -3,43 +3,54 @@
   "version": "2.0.1",
   "description": "Sync HTTP implementation of the WebDriver protocol",
   "license": "BSD-3-Clause",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org",
+  "main": "lib/index.js",
+  "homepage": "https://github.com/groupon/webdriver-http-sync",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/groupon/webdriver-http-sync"
+  },
+  "bugs": {
+    "url": "https://github.com/groupon/webdriver-http-sync/issues"
+  },
+  "scripts": {
+    "build": "rm -rf lib && coffee --no-header -cbo lib src",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "posttest": "nlm verify",
+    "watch": "coffee --no-header -wcbo lib src & nodemon -w lib -w test -e coffee,js,json -x \"mocha\""
+  },
+  "nlm": {
     "license": {
-      "exclude": [
-        "test",
-        "lib"
+      "files": [
+        "src"
       ]
     }
+  },
+  "dependencies": {
+    "assertive": "^1.4.0",
+    "bindings": "~1.2.1",
+    "caseless": "~0.11.0",
+    "coffee-script": "^1.10.0",
+    "concat-stream": "^1.4.7",
+    "debug": "^2.1.1",
+    "lodash": "^4.6.1",
+    "nan": "^2.0.9"
+  },
+  "devDependencies": {
+    "assertive": "^2.0.0",
+    "mocha": "^2.0.0",
+    "nlm": "^2.0.0",
+    "nodemon": "^1.0.0"
   },
   "author": {
     "name": "Sean Massa",
     "email": "smassa@groupon.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/groupon-testium/webdriver-http-sync"
-  },
-  "scripts": {
-    "build": "npub prep && coffee -cbo lib src",
-    "prepublish": "rm -rf lib && npm run build",
-    "pretest": "npm run build",
-    "test": "mocha",
-    "posttest": "npub verify"
-  },
-  "main": "lib/index.js",
-  "dependencies": {
-    "assertive": "^1.4.0",
-    "bindings": "~1.2.1",
-    "caseless": "~0.11.0",
-    "coffee-script": "1.9.3",
-    "concat-stream": "^1.4.7",
-    "debug": "^2.1.1",
-    "lodash": "^3.1.0",
-    "nan": "^2.0.9"
-  },
-  "devDependencies": {
-    "mocha": "^2.1.0",
-    "npub": "^2.0.0"
+  "files": [
+    "*.js",
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
