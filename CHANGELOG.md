@@ -1,3 +1,9 @@
+### 2.0.3
+
+* Include native code in package - **[@jkrems](https://github.com/jkrems)** [#39](https://github.com/groupon/webdriver-http-sync/pull/39)
+  - [`5b2c904`](https://github.com/groupon/webdriver-http-sync/commit/5b2c90449bccd0174400f34c1895ab05fe5025b7) **fix:** Include native code in package
+
+
 ### 2.0.2
 
 * Apply latest nlm generator - **[@i-tier-bot](https://github.com/i-tier-bot)** [#38](https://github.com/groupon/webdriver-http-sync/pull/38)
