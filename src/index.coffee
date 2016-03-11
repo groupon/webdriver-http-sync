@@ -77,10 +77,38 @@ module.exports = class WebDriver
     @http.delete ''
     return
 
+  setScriptTimeout: (ms) ->
+    @http.post "/timeouts/async_script", { ms }
+    return
+
   evaluate: (clientFunctionString) ->
+    if arguments.length > 1
+      [clientFunctionString, args...] = arguments
+
+    if typeof clientFunctionString == 'function'
+      clientFunctionString = 'return (' + clientFunctionString + ').apply(this, arguments)'
+
     response = @http.post "/execute",
       script: clientFunctionString
-      args: []
+      args: args ? []
+
+    try
+      return parseResponseData(response)
+    catch error
+      friendlyError = new Error "Error evaluating JavaScript: #{clientFunctionString}\n#{error.message}"
+      friendlyError.inner = error
+      throw friendlyError
+
+  evaluateAsync: (clientFunctionString) ->
+    if arguments.length > 1
+      [clientFunctionString, args...] = arguments
+
+    if typeof clientFunctionString == 'function'
+      clientFunctionString = 'return (' + clientFunctionString + ').apply(this, arguments)'
+
+    response = @http.post "/execute_async",
+      script: clientFunctionString
+      args: args ? []
 
     try
       return parseResponseData(response)

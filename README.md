@@ -61,11 +61,13 @@ Method | Description
 `driver.getElement(cssSelector)` | Finds an element on the page using the `cssSelector` and returns an Element.
 `driver.getElements(cssSelector)` | Finds all elements on the page using the `cssSelector` and returns an array of Elements.
 `driver.setElementTimeout(milliseconds)` | Sets a timeout for WebDriver to find elements with `getElement` and `getElements`.
+`driver.setScriptTimeout(milliseconds)` | Sets a timeout for WebDriver to execute async scripts with `evaluateAsync`.
 `driver.getUrl()` | Returns the current url of the page.
 `driver.getPageTitle()` | Returns the current page title.
 `driver.getPageSource()` | Returns the current page's html source.
 `driver.getScreenshot()` | Returns screenshot as a base64 encoded PNG.
 `driver.evaluate(javascriptString)` | Executes the given javascript. It must contain a return statement in order to get a value back.
+`driver.evaluateAsync(javascriptString)` | Executes the given asynchronous javascript. The executed script must signal that is done by invoking the provided callback, which is always provided as the final argument to the function.
 `driver.setCookie(Cookie)` | Sets a cookie on the current page's domain. `Cookie = { name, value, path='/' }`
 `driver.getCookies()` | Returns all cookies visible to the current page.
 `driver.clearCookies()` | Deletes all cookies visible to the current page.
@@ -111,7 +113,7 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId` | Retrieve the capabilities of the specified session.
 ![Implemented](./docs/implemented.png "Implemented") | DELETE | `/session/:sessionId` | Delete the session.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/timeouts` |  Configure the amount of time that a particular type of operation can execute for before they are aborted and a `Timeout` error is returned to the client.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/timeouts/async_script` | Set the amount of time, in milliseconds, that asynchronous scripts executed by `/session/:sessionId/execute_async` are permitted to run before they are aborted and a `Timeout` error is returned to the client.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/timeouts/async_script` | Set the amount of time, in milliseconds, that asynchronous scripts executed by `/session/:sessionId/execute_async` are permitted to run before they are aborted and a `Timeout` error is returned to the client.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/timeouts/implicit_wait` |  Set the amount of time the driver should wait when searching for elements.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/window_handle` | Retrieve the current window handle.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/window_handles` |  Retrieve the list of all window handles available to the session.
@@ -120,8 +122,8 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/forward` | Navigate forwards in the browser history, if possible.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/back` |  Navigate backwards in the browser history, if possible.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/refresh` | Refresh the current page.
-![Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/execute` | Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/execute_async` | Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/execute` | Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/execute_async` | Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/screenshot` |  Take a screenshot of the current page.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/ime/available_engines` | List all available engines on the machine.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId/ime/active_engine` | Get the name of the active IME engine.
