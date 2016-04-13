@@ -1,3 +1,10 @@
+### 2.1.0
+
+* Implement execute_async, async_script, timeouts methods - **[@w0rse](https://github.com/w0rse)** [#40](https://github.com/groupon/webdriver-http-sync/pull/40)
+  - [`3520539`](https://github.com/groupon/webdriver-http-sync/commit/35205398efef9e238b67de35c3a8586c43572f6b) **feat:** Implement execute_async and async_script methods
+  - [`111cb0e`](https://github.com/groupon/webdriver-http-sync/commit/111cb0e6d4d8460b5c68becdce23db0ec1db8610) **feat:** Implement timeouts method
+
+
 ### 2.0.3
 
 * Include native code in package - **[@jkrems](https://github.com/jkrems)** [#39](https://github.com/groupon/webdriver-http-sync/pull/39)
