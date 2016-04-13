@@ -60,6 +60,7 @@ Method | Description
 `driver.refresh()` | Refreshes the browser.
 `driver.getElement(cssSelector)` | Finds an element on the page using the `cssSelector` and returns an Element.
 `driver.getElements(cssSelector)` | Finds all elements on the page using the `cssSelector` and returns an array of Elements.
+`driver.setTimeouts(type, milliseconds)` | Sets a timeout for a certain type of operation. Valid types are: "script" for script timeouts, "implicit" for modifying the implicit wait timeout and "page load" for setting a page load timeout.
 `driver.setElementTimeout(milliseconds)` | Sets a timeout for WebDriver to find elements with `getElement` and `getElements`.
 `driver.setScriptTimeout(milliseconds)` | Sets a timeout for WebDriver to execute async scripts with `evaluateAsync`.
 `driver.getUrl()` | Returns the current url of the page.
@@ -112,7 +113,7 @@ Status | HTTP Method | Path  | Summary
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/sessions` | Returns a list of the currently active sessions.
 ![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | GET | `/session/:sessionId` | Retrieve the capabilities of the specified session.
 ![Implemented](./docs/implemented.png "Implemented") | DELETE | `/session/:sessionId` | Delete the session.
-![Not Yet Implemented](./docs/not_implemented.png "Not Yet Implemented") | POST | `/session/:sessionId/timeouts` |  Configure the amount of time that a particular type of operation can execute for before they are aborted and a `Timeout` error is returned to the client.
+![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/timeouts` |  Configure the amount of time that a particular type of operation can execute for before they are aborted and a `Timeout` error is returned to the client.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/timeouts/async_script` | Set the amount of time, in milliseconds, that asynchronous scripts executed by `/session/:sessionId/execute_async` are permitted to run before they are aborted and a `Timeout` error is returned to the client.
 ![Implemented](./docs/implemented.png "Implemented") | POST | `/session/:sessionId/timeouts/implicit_wait` |  Set the amount of time the driver should wait when searching for elements.
 ![Implemented](./docs/implemented.png "Implemented") | GET | `/session/:sessionId/window_handle` | Retrieve the current window handle.

@@ -77,6 +77,10 @@ module.exports = class WebDriver
     @http.delete ''
     return
 
+  setTimeouts: (type, ms) ->
+    @http.post "/timeouts", { type, ms }
+    return
+
   setScriptTimeout: (ms) ->
     @http.post "/timeouts/async_script", { ms }
     return
