@@ -123,6 +123,13 @@ module.exports = class Element
     @http.post "#{@root}/clear"
     return
 
+  movePointerRelativeTo: (xOffset, yOffset) ->
+    opts = element: @elementId
+    opts.xoffset = xOffset if xOffset?
+    opts.yoffset = yOffset if yOffset?
+    @http.post '/moveto', opts
+    return
+
 elementOrNull = Element.elementOrNull = (create) ->
   try
     create()
