@@ -1,3 +1,9 @@
+### 2.2.0
+
+* feat: add support for buttondown/up & moveto - **[@dbushong](https://github.com/dbushong)** [#42](https://github.com/groupon/webdriver-http-sync/pull/42)
+  - [`35ea4ca`](https://github.com/groupon/webdriver-http-sync/commit/35ea4ca6f3fda0480925613c42d73f702e333100) **feat:** add support for buttondown/up & moveto
+
+
 ### 2.1.0
 
 * Implement execute_async, async_script, timeouts methods - **[@w0rse](https://github.com/w0rse)** [#40](https://github.com/groupon/webdriver-http-sync/pull/40)
