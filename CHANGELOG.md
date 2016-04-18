@@ -1,3 +1,9 @@
+### 2.2.1
+
+* Apply latest nlm generator - **[@i-tier-bot](https://github.com/i-tier-bot)** [#41](https://github.com/groupon/webdriver-http-sync/pull/41)
+  - [`7ac30f4`](https://github.com/groupon/webdriver-http-sync/commit/7ac30f4609f91d6ec5e4e724492eccd39073f5f1) **chore:** Apply latest nlm generator
+
+
 ### 2.2.0
 
 * feat: add support for buttondown/up & moveto - **[@dbushong](https://github.com/dbushong)** [#42](https://github.com/groupon/webdriver-http-sync/pull/42)
