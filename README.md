@@ -83,6 +83,7 @@ Method | Description
 `driver.setGeolocation(location)` | Set the browser's HTML5 geolocation. Expects `location` to be an object like `{latitude: 37.425, longitude: -122.136, altitude: 10.0}`. Not supported in all browsers.
 `driver.buttonDown(button)` | Presses down the pointer button (default 0 = left, can be 1 = middle, 2 = right) at location of last `element.movePointerRelativeTo()`
 `driver.buttonUp(button)` | Like `driver.buttonDown()`
+`driver.click(button)` | Like `driver.buttonDown()`
 `driver.close()` | Closes the WebDriver session.
 
 ### Element
@@ -177,7 +178,7 @@ Status | HTTP Method | Path  | Summary
 ![impl] | POST | `/session/:sessionId/accept_alert` |  Accepts the currently displayed alert dialog.
 ![impl] | POST | `/session/:sessionId/dismiss_alert` | Dismisses the currently displayed alert dialog.
 ![impl] | POST | `/session/:sessionId/moveto` |  Move the pointer by an offset of the specified element.
-![not-yet] | POST | `/session/:sessionId/click` | Click any pointer button (at the coordinates set by the last moveto command).
+![impl] | POST | `/session/:sessionId/click` | Click any pointer button (at the coordinates set by the last moveto command).
 ![impl] | POST | `/session/:sessionId/buttondown` |  Click and hold the left pointer button (at the coordinates set by the last moveto command).
 ![impl] | POST | `/session/:sessionId/buttonup` |  Releases the pointer button previously held (where the pointer is currently at).
 ![not-yet] | POST | `/session/:sessionId/doubleclick` | Double-clicks at the current pointer coordinates (set by moveto).

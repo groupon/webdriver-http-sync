@@ -37,3 +37,7 @@ module.exports = (http) ->
   buttonUp: (button=0) ->
     http.post '/buttonup', { button }
     return
+
+  click: (button=0) ->
+    http.post '/click', { button }
+    return
