@@ -1,3 +1,10 @@
+### 2.3.0
+
+* Implement driver click method - **[@jkrems](https://github.com/jkrems)** [#45](https://github.com/groupon/webdriver-http-sync/pull/45)
+  - [`ce724b6`](https://github.com/groupon/webdriver-http-sync/commit/ce724b639fbe978cc8afa3325580ff9db5fbd625) **feat:** implement driver click method
+  - [`51ac055`](https://github.com/groupon/webdriver-http-sync/commit/51ac055fbb2c8dc893bd7eee7f8cd6c21c57a325) **chore:** Check in new compiled version
+
+
 ### 2.2.1
 
 * Apply latest nlm generator - **[@i-tier-bot](https://github.com/i-tier-bot)** [#41](https://github.com/groupon/webdriver-http-sync/pull/41)
