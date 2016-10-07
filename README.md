@@ -70,11 +70,23 @@ Method | Description
 `driver.evaluate(javascriptString)` | Executes the given javascript. It must contain a return statement in order to get a value back.
 `driver.evaluateAsync(javascriptString)` | Executes the given asynchronous javascript. The executed script must signal that is done by invoking the provided callback, which is always provided as the final argument to the function.
 `driver.setCookie(Cookie)` | Sets a cookie on the current page's domain. `Cookie = { name, value, path='/' }`
+`driver.switchToDefaultFrame()` | Change focus to default content on the page.
+`driver.switchToFrame(indexOrNameOrId)` | Change focus to another frame on the page.
+`driver.getCurrentWindowHandle()` | Retrieve the current window handle.
+`driver.switchToWindow(name)` | Change focus to another window. The window to change focus to may be specified by its
+server assigned window handle, or by the value of its `name` attribute.
+`driver.closeWindow()` | Close the current window.
+`driver.getWindowSize(windowHandle)` | Get the size of the specified window. If no `windowHandle` in specified the current window is assumed. Returns an object with `width` and `height` values.
+`driver.setWindowSize(width, height, windowHandle)` | Change the size of the specified window. If no `windowHandle` in specified the current window is assumed.
+`driver.getWindowPosition(windowHandle)` | Get the position of the specified window. If no `windowHandle` in specified the current window is assumed. Returns an object with `x` and `y` values.
+`driver.setWindowPosition(x, y, windowHandle)` | Change the position of the specified window. If no `windowHandle` in specified the current window is assumed.
+`driver.maximizeWindow(windowHandle)` | Maximize the specified window if not already maximized. If no `windowHandle` in specified the current window is assumed.
 `driver.getCookies()` | Returns all cookies visible to the current page.
 `driver.clearCookies()` | Deletes all cookies visible to the current page.
 `driver.setLocalStorageKey(key, value)` | Sets a local storage item for the current page.
 `driver.getLocalStorageKeys()` | Returns all local storage keys visible to the current page.
 `driver.clearLocalStorage()` | Deletes all local storage visible to the current page.
+`driver.getConsoleLogs()` | Get browser console logs.
 `driver.acceptAlert()` | Accepts the visable alert.
 `driver.dismissAlert()` | Dismisses the visable alert.
 `driver.getAlertText()` | Gets the visable alert's text.
@@ -138,11 +150,11 @@ Status | HTTP Method | Path  | Summary
 ![impl] | POST | `/session/:sessionId/frame` | Change focus to another frame on the page.
 ![impl] | POST | `/session/:sessionId/window` |  Change focus to another window.
 ![impl] | DELETE | `/session/:sessionId/window` |  Close the current window.
-![not-yet] | POST | `/session/:sessionId/window/:windowHandle/size` | Change the size of the specified window.
-![not-yet] | GET | `/session/:sessionId/window/:windowHandle/size` | Get the size of the specified window.
-![not-yet] | POST | `/session/:sessionId/window/:windowHandle/position` | Change the position of the specified window.
-![not-yet] | GET | `/session/:sessionId/window/:windowHandle/position` | Get the position of the specified window.
-![not-yet] | POST | `/session/:sessionId/window/:windowHandle/maximize` | Maximize the specified window if not already maximized.
+![impl] | POST | `/session/:sessionId/window/:windowHandle/size` | Change the size of the specified window.
+![impl] | GET | `/session/:sessionId/window/:windowHandle/size` | Get the size of the specified window.
+![impl] | POST | `/session/:sessionId/window/:windowHandle/position` | Change the position of the specified window.
+![impl] | GET | `/session/:sessionId/window/:windowHandle/position` | Get the position of the specified window.
+![impl] | POST | `/session/:sessionId/window/:windowHandle/maximize` | Maximize the specified window if not already maximized.
 ![impl] | GET | `/session/:sessionId/cookie` |  Retrieve all cookies visible to the current page.
 ![impl] | POST | `/session/:sessionId/cookie` |  Set a cookie.
 ![impl] | DELETE | `/session/:sessionId/cookie` |  Delete all cookies visible to the current page.
@@ -206,7 +218,7 @@ Status | HTTP Method | Path  | Summary
 ![not-yet] | GET | `/session/:sessionId/session_storage/key/:key` |  Get the storage item for the given key.
 ![not-yet] | DELETE | `/session/:sessionId/session_storage/key/:key` |  Remove the storage item for the given key.
 ![not-yet] | GET | `/session/:sessionId/session_storage/size` |  Get the number of items in the storage.
-![not-yet] | POST | `/session/:sessionId/log` | Get the log for a given log type.
+![impl] | POST | `/session/:sessionId/log` | Get the log for a given log type.
 ![not-yet] | GET | `/session/:sessionId/log/types` | Get available log types.
 ![not-yet] | GET | `/session/:sessionId/application_cache/status` |  Get the status of the html5 application cache.
 
