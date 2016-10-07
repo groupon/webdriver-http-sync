@@ -1,3 +1,9 @@
+### 2.4.0
+
+* feat: implement window positioning and resizing - **[@w0rse](https://github.com/w0rse)** [#46](https://github.com/groupon/webdriver-http-sync/pull/46)
+  - [`83ff0c6`](https://github.com/groupon/webdriver-http-sync/commit/83ff0c6b6e3ba49a4e8e5bf421ca14cb9d47286e) **feat:** implement window positioning and resizing
+
+
 ### 2.3.0
 
 * Implement driver click method - **[@jkrems](https://github.com/jkrems)** [#45](https://github.com/groupon/webdriver-http-sync/pull/45)
