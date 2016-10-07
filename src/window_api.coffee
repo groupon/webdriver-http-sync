@@ -34,15 +34,15 @@ parseResponseData = require './parse_response'
 
 module.exports = (http) ->
   switchToDefaultFrame: ->
-    http.post "/frame"
+    http.post '/frame'
     return
 
   switchToFrame: (indexOrNameOrId) ->
-    http.post "/frame", { id: indexOrNameOrId }
+    http.post '/frame', { id: indexOrNameOrId }
     return
 
   getCurrentWindowHandle: ->
-    response = http.get "/window_handle"
+    response = http.get '/window_handle'
     parseResponseData(response)
 
   switchToWindow: (name) ->
@@ -51,5 +51,25 @@ module.exports = (http) ->
 
   closeWindow: ->
     http.delete '/window'
+    return
+
+  getWindowSize: (windowHandle='current') ->
+    response = http.get "/window/#{windowHandle}/size"
+    parseResponseData(response)
+
+  setWindowSize: (width, height, windowHandle='current') ->
+    http.post "/window/#{windowHandle}/size", { width, height }
+    return
+
+  getWindowPosition: (windowHandle='current') ->
+    response = http.get "/window/#{windowHandle}/position"
+    parseResponseData(response)
+
+  setWindowPosition: (x, y, windowHandle='current') ->
+    http.post "/window/#{windowHandle}/position", { x, y }
+    return
+
+  maximizeWindow: (windowHandle='current') ->
+    http.post "/window/#{windowHandle}/maximize"
     return
 
