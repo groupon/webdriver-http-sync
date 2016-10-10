@@ -1,3 +1,9 @@
+### 2.4.1
+
+* fix: wrong newline in methods docs - **[@w0rse](https://github.com/w0rse)** [#47](https://github.com/groupon/webdriver-http-sync/pull/47)
+  - [`c2c0265`](https://github.com/groupon/webdriver-http-sync/commit/c2c0265bb832020d37141f85f2b8ba6e3840be6a) **fix:** wrong newline in methods docs
+
+
 ### 2.4.0
 
 * feat: implement window positioning and resizing - **[@w0rse](https://github.com/w0rse)** [#46](https://github.com/groupon/webdriver-http-sync/pull/46)
