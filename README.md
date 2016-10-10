@@ -73,8 +73,7 @@ Method | Description
 `driver.switchToDefaultFrame()` | Change focus to default content on the page.
 `driver.switchToFrame(indexOrNameOrId)` | Change focus to another frame on the page.
 `driver.getCurrentWindowHandle()` | Retrieve the current window handle.
-`driver.switchToWindow(name)` | Change focus to another window. The window to change focus to may be specified by its
-server assigned window handle, or by the value of its `name` attribute.
+`driver.switchToWindow(name)` | Change focus to another window. The window to change focus to may be specified by its server assigned window handle, or by the value of its `name` attribute.
 `driver.closeWindow()` | Close the current window.
 `driver.getWindowSize(windowHandle)` | Get the size of the specified window. If no `windowHandle` in specified the current window is assumed. Returns an object with `width` and `height` values.
 `driver.setWindowSize(width, height, windowHandle)` | Change the size of the specified window. If no `windowHandle` in specified the current window is assumed.
