@@ -45,6 +45,10 @@ module.exports = (http) ->
     response = http.get '/window_handle'
     parseResponseData(response)
 
+  getWindowHandles: ->
+    response = http.get '/window_handles'
+    parseResponseData(response)
+
   switchToWindow: (name) ->
     http.post '/window', { name }
     return
