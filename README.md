@@ -72,6 +72,7 @@ Method | Description
 `driver.setCookie(Cookie)` | Sets a cookie on the current page's domain. `Cookie = { name, value, path='/' }`
 `driver.switchToDefaultFrame()` | Change focus to default content on the page.
 `driver.switchToFrame(indexOrNameOrId)` | Change focus to another frame on the page.
+`driver.getWindowHandles()` | Retrieve the list of all window handles available to the session.
 `driver.getCurrentWindowHandle()` | Retrieve the current window handle.
 `driver.switchToWindow(name)` | Change focus to another window. The window to change focus to may be specified by its server assigned window handle, or by the value of its `name` attribute.
 `driver.closeWindow()` | Close the current window.
@@ -132,7 +133,7 @@ Status | HTTP Method | Path  | Summary
 ![impl] | POST | `/session/:sessionId/timeouts/async_script` | Set the amount of time, in milliseconds, that asynchronous scripts executed by `/session/:sessionId/execute_async` are permitted to run before they are aborted and a `Timeout` error is returned to the client.
 ![impl] | POST | `/session/:sessionId/timeouts/implicit_wait` |  Set the amount of time the driver should wait when searching for elements.
 ![impl] | GET | `/session/:sessionId/window_handle` | Retrieve the current window handle.
-![not-yet] | GET | `/session/:sessionId/window_handles` |  Retrieve the list of all window handles available to the session.
+![impl] | GET | `/session/:sessionId/window_handles` |  Retrieve the list of all window handles available to the session.
 ![impl] | GET | `/session/:sessionId/url` | Retrieve the URL of the current page.
 ![impl] | POST | `/session/:sessionId/url` | Navigate to a new URL.
 ![not-yet] | POST | `/session/:sessionId/forward` | Navigate forwards in the browser history, if possible.
