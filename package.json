@@ -1,6 +1,6 @@
 {
   "name": "webdriver-http-sync",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "Sync HTTP implementation of the WebDriver protocol",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",

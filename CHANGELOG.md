@@ -1,3 +1,9 @@
+### 2.5.0
+
+* feat: implement gettings all window handles - **[@w0rse](https://github.com/w0rse)** [#48](https://github.com/groupon/webdriver-http-sync/pull/48)
+  - [`84dd9be`](https://github.com/groupon/webdriver-http-sync/commit/84dd9be957e8a417a3ef7c513ae3f90aafb4b7ce) **feat:** implement gettings all window handles
+
+
 ### 2.4.1
 
 * fix: wrong newline in methods docs - **[@w0rse](https://github.com/w0rse)** [#47](https://github.com/groupon/webdriver-http-sync/pull/47)
