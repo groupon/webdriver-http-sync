@@ -96,6 +96,7 @@ Method | Description
 `driver.buttonDown(button)` | Presses down the pointer button (default 0 = left, can be 1 = middle, 2 = right) at location of last `element.movePointerRelativeTo()`
 `driver.buttonUp(button)` | Like `driver.buttonDown()`
 `driver.click(button)` | Like `driver.buttonDown()`
+`driver.sendKeys(strings...)` | Sends `strings...` to the active element.
 `driver.close()` | Closes the WebDriver session.
 
 ### Element
@@ -171,7 +172,7 @@ Status | HTTP Method | Path  | Summary
 ![not-yet] | POST | `/session/:sessionId/element/:id/submit` |  Submit a FORM element.
 ![impl] | GET | `/session/:sessionId/element/:id/text` |  Returns the visible text for the element.
 ![Partially Implemented](./docs/partially_implemented.png "Does not support special characters") | POST | `/session/:sessionId/element/:id/value` | Send a sequence of key strokes to an element.
-![not-yet] | POST | `/session/:sessionId/keys` |  Send a sequence of key strokes to the active element.
+![impl] | POST | `/session/:sessionId/keys` |  Send a sequence of key strokes to the active element.
 ![not-yet] | GET | `/session/:sessionId/element/:id/name` |  Query for an element's tag name.
 ![impl] | POST | `/session/:sessionId/element/:id/clear` | Clear a TEXTAREA or text INPUT element's value.
 ![not-yet] | GET | `/session/:sessionId/element/:id/selected` |  Determine if an OPTION element, or an INPUT element of type checkbox or radiobutton is currently selected.

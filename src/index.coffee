@@ -122,3 +122,7 @@ module.exports = class WebDriver
       friendlyError = new Error "Error evaluating JavaScript: #{clientFunctionString}\n#{error.message}"
       friendlyError.inner = error
       throw friendlyError
+
+  sendKeys: (strings...) ->
+    @http.post '/keys', {value: strings}
+    return
