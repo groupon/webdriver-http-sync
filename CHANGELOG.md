@@ -1,3 +1,9 @@
+### 2.6.0
+
+* feat: implement sending keys to currently active element - **[@w0rse](https://github.com/w0rse)** [#49](https://github.com/groupon/webdriver-http-sync/pull/49)
+  - [`851d753`](https://github.com/groupon/webdriver-http-sync/commit/851d753c2ec788840d54d5d93a9278397b9f2af8) **feat:** implement sending keys to currently active element
+
+
 ### 2.5.0
 
 * feat: implement gettings all window handles - **[@w0rse](https://github.com/w0rse)** [#48](https://github.com/groupon/webdriver-http-sync/pull/48)
