@@ -1,7 +1,7 @@
 # webdriver-http-sync
 
 Sync implementation of the
-[WebDriver protocol](https://code.google.com/p/selenium/wiki/JsonWireProtocol)
+[WebDriver protocol](https://www.w3.org/TR/webdriver/)
 in Node.js.
 
 Keep up to date with changes
@@ -14,6 +14,8 @@ Tested on node.js 0.10.* and io.js.
 
 On Ubuntu, you need to make sure you have libcurl installed.
 `sudo apt-get install libcurl4-openssl-dev`
+
+Then install it with:
 
 ```bash
 npm install webdriver-http-sync
@@ -119,7 +121,7 @@ Method | Description
 
 ## Contributing
 
-There are 97 WebDriver methods! The progress of implementing all of them is visualized below.
+There are ~100 WebDriver methods! The progress of implementing all of them is visualized below.
 
 The most important and often used methods are already implemented. You can help out by implementing more methods.
 
