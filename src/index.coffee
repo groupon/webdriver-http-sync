@@ -79,6 +79,10 @@ module.exports = class WebDriver
     @http.delete ''
     return
 
+  getCapabilities: ->
+    response = @http.get ''
+    parseResponseData response
+
   setTimeouts: (type, ms) ->
     @http.post "/timeouts", { type, ms }
     return
