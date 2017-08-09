@@ -67,6 +67,7 @@ Method | Description
 `driver.getPageTitle()` | Returns the current page title.
 `driver.getPageSource()` | Returns the current page's html source.
 `driver.getScreenshot()` | Returns screenshot as a base64 encoded PNG.
+`driver.getCapabilities()` | Returns browser capabilities for current session.
 `driver.evaluate(javascriptString)` | Executes the given javascript. It must contain a return statement in order to get a value back.
 `driver.evaluateAsync(javascriptString)` | Executes the given asynchronous javascript. The executed script must signal that is done by invoking the provided callback, which is always provided as the final argument to the function.
 `driver.setCookie(Cookie)` | Sets a cookie on the current page's domain. `Cookie = { name, value, path='/' }`
@@ -128,7 +129,7 @@ Status | HTTP Method | Path  | Summary
 ![not-yet] | GET | `/status` | Query the server's current status.
 ![impl] | POST | `/session` | Create a new session.
 ![not-yet] | GET | `/sessions` | Returns a list of the currently active sessions.
-![not-yet] | GET | `/session/:sessionId` | Retrieve the capabilities of the specified session.
+![impl] | GET | `/session/:sessionId` | Retrieve the capabilities of the specified session.
 ![impl] | DELETE | `/session/:sessionId` | Delete the session.
 ![impl] | POST | `/session/:sessionId/timeouts` |  Configure the amount of time that a particular type of operation can execute for before they are aborted and a `Timeout` error is returned to the client.
 ![impl] | POST | `/session/:sessionId/timeouts/async_script` | Set the amount of time, in milliseconds, that asynchronous scripts executed by `/session/:sessionId/execute_async` are permitted to run before they are aborted and a `Timeout` error is returned to the client.
