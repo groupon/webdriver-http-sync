@@ -1,3 +1,9 @@
+### 2.7.0
+
+* feat: implement getting browser capabilities for current session - **[@w0rse](https://github.com/w0rse)** [#52](https://github.com/groupon/webdriver-http-sync/pull/52)
+  - [`42c10ff`](https://github.com/groupon/webdriver-http-sync/commit/42c10ff3f6192e523c51adb11a876c285bdcfb24) **feat:** implements getting browser capabilities for current session
+
+
 ### 2.6.0
 
 * feat: implement sending keys to currently active element - **[@w0rse](https://github.com/w0rse)** [#49](https://github.com/groupon/webdriver-http-sync/pull/49)
