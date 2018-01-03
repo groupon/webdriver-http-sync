@@ -14,6 +14,7 @@ describe 'request', ->
     @server = execFile testServer, [ '' + webPort ]
     @server.stderr.pipe process.stderr
     setTimeout done, 200
+    return
 
   after 'tear down test-server', ->
     try @server?.kill()

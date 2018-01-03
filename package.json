@@ -7,7 +7,7 @@
   "homepage": "https://github.com/groupon/webdriver-http-sync",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/groupon/webdriver-http-sync"
+    "url": "https://github.com/groupon/webdriver-http-sync"
   },
   "bugs": {
     "url": "https://github.com/groupon/webdriver-http-sync/issues"
@@ -37,8 +37,9 @@
     "nan": "^2.0.9"
   },
   "devDependencies": {
-    "mocha": "^2.0.0",
-    "nlm": "^2.0.0",
+    "assertive": "^2.1.0",
+    "mocha": "^3.1.2",
+    "nlm": "^3.0.0",
     "nodemon": "^1.0.0"
   },
   "author": {
