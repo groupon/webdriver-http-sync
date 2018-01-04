@@ -22,6 +22,7 @@ describe 'Webdriver', ->
     @server.stderr.pipe process.stderr
     @server.stdout.pipe process.stdout if DEBUG
     setTimeout done, 200
+    return
 
   before 'boot phantomjs', (done) ->
     phantomArgs = [ "--webdriver=#{phantomPort}" ]
@@ -39,6 +40,7 @@ describe 'Webdriver', ->
         done()
 
     @phantom.stdout.on 'data', waitForBoot
+    return
 
   before 'create driver', ->
     @driver = new WebDriver "#{phantomUrl}", {
