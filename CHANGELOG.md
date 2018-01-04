@@ -1,3 +1,9 @@
+### 2.7.1
+
+* Apply latest nlm generator - **[@markowsiak](https://github.com/markowsiak)** [#53](https://github.com/groupon/webdriver-http-sync/pull/53)
+  - [`b648cd9`](https://github.com/groupon/webdriver-http-sync/commit/b648cd9a5f62fa89da868a2f265421b63b1ce8f2) **chore:** Apply latest nlm generator
+
+
 ### 2.7.0
 
 * feat: implement getting browser capabilities for current session - **[@w0rse](https://github.com/w0rse)** [#52](https://github.com/groupon/webdriver-http-sync/pull/52)
